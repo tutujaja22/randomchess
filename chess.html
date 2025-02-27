@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>고급 체스 게임</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+        .game-area {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .gauge-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+        }
+        .board { 
+            display: grid; 
+            grid-template-columns: repeat(8, 70px); 
+            border: 3px solid #5c4033;
+            background-color: #8B5A2B;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .square { 
+            width: 70px; 
+            height: 70px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .white { background-color: #D2B48C; }
+        .black { background-color: #8B5A2B; }
+        .selected { background-color: #FFD700 !important; }
+        .highlight { background-color: #98FB98; }
+        #turn { 
+            font-size: 24px; 
+            margin: 10px 0;
+            color: #5c4033;
+            font-weight: bold;
+        }
+        #phase { 
+            font-size: 20px; 
+            margin: 5px 0;
+            color: #5c4033;
+            font-style: italic;
+        }
+        #timer {
+            font-size: 20px;
+            margin: 5px 0;
+            color: #DC143C;
+            font-weight: bold;
+        }
+        .status {
+            font-size: 18px;
+            color: #5c4033;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .gauge-box {
+            width: 70px;
+            height: 20px;
+            border: 2px solid #5c4033;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .gauge-label {
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        .gauge {
+            height: 100%;
+            transition: width 0.5s;
+        }
+        .black-gauge .gauge { background-color: #8B4513; } /* 흑: 다크 브라운 */
+        .white-gauge .gauge { background-color: #F0E68C; } /* 백: 황금색 */
+        #dice-animation {
+            font-size: 24px;
+            margin: 10px 0;
+            min-height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: #5c4033;">고급 체스 게임</h1>
+        <div class="game-area">
+            <div class="gauge-wrapper">
+                <div class="gauge-box black-gauge">
+                    <div class="gauge-label">흑</div>
+                    <div id="black-gauge" class="gauge"></div>
+                </div>
+            </div>
+            <div>
+                <div id="chessboard" class="board"></div>
+                <p id="turn">현재 차례: 흰색</p>
+                <p id="phase">상태: 주사위 던지기</p>
+                <p id="timer">남은 시간: 30초</p>
+                <p id="status" class="status"></p>
+                <div id="dice-animation"></div>
+            </div>
+            <div class="gauge-wrapper">
+                <div class="gauge-box white-gauge">
+                    <div class="gauge-label">백</div>
+                    <div id="white-gauge" class="gauge"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="chess.js"></script>
+</body>
+</html>
